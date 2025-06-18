@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ 
+  <header>
+    <nav>
+      <div class="logo"><img src="img/logo.svg" alt=""></div>
+      <menu>
+        <a href="convector2.html">Розгорнутий конвектор</a>
+        <a href="time2.html">Розрахувати графік</a>
+      </menu>
+      <a href="convector.html" class="link1"><img src="img/back.svg" alt="back"></a>
+      
+    </nav>
+
+    <h1>Графік дня для контролю діабету</h1>
+  <table class="time">
+    <thead>
+      <tr>
+        <th>Час</th>
+        <th>Діяльність</th>
+        <th>Коментар</th>
+      </tr>
+    </thead>
+    <tbody id="schedule-body">
+      <!-- Контент буде додано через JavaScript -->
+    </tbody>
+  </table>
+ </header>
+  
+ <script>
+  const schedule = [
+    { time: "07:00", activity: "Пробудження", comment: "Вимірювання рівня глюкози натще" },
+    { time: "07:30", activity: "Сніданок", comment: "Білки + повільні вуглеводи" },
+    { time: "08:30", activity: "Легка фізична активність", comment: "Ходьба або зарядка 20–30 хвилин" },
+    { time: "10:30", activity: "Перекус (за потреби)", comment: "Горіхи, йогурт без цукру" },
+    { time: "13:00", activity: "Обід", comment: "Овочі, білки, складні вуглеводи" },
+    { time: "14:00", activity: "Прогулянка або легкі вправи", comment: "15–20 хвилин" },
+    { time: "16:00", activity: "Перекус (опціонально)", comment: "Фрукти з низьким ГІ або кисломолочні" },
+    { time: "18:00", activity: "Вечеря", comment: "Легка їжа: білки + овочі" },
+    { time: "19:00", activity: "Помірні фізичні вправи", comment: "Йога, плавання, велосипед — 30 хв" },
+    { time: "20:30", activity: "Легка закуска (за потреби)", comment: "Наприклад, склянка кефіру" },
+    { time: "21:00", activity: "Вимірювання рівня глюкози", comment: "Перед сном" },
+    { time: "22:00", activity: "Сон", comment: "Регулярний режим сну важливий" }
+  ];
+
+  const tableBody = document.getElementById("schedule-body");
+
+  schedule.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.time}</td>
+      <td>${item.activity}</td>
+      <td>${item.comment}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+</script>
+  <script src="script.js"></script>
+  <script src="script1.js"></script>
+</body>
+
+</html>

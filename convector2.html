@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ 
+  <header>
+    <nav>
+      <div class="logo"><img src="img/logo.svg" alt=""></div>
+      <menu>
+        <a href="convector2.html">Конвектор</a>
+        <a href="time.html">Графік</a>
+        <a href="base.html">Запис даних</a>
+       </menu>
+      <a href="convector.html" class="link1"><img src="img/back.svg" alt="back"></a>
+      
+    </nav>
+
+  <div class="container2">
+    <h1>Щоденник діабету</h1>
+
+    <form id="glucose-form">
+      <label for="glucose">Рівень глюкози (ммоль/л):</label>
+      <input type="number" id="glucose" step="0.1" required>
+      <label for="date">Дата:</label>
+      <input type="date" id="date" required>
+      <button type="submit">Зберегти</button>
+    </form>
+
+    <h2>Історія вимірювань</h2>
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Глюкоза (ммоль/л)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Графік глюкози</h2>
+    <canvas id="glucose-chart" width="400" height="200"></canvas>
+  </div>
+
+    </div>
+ </header>
+  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script2.js"></script>
+  <script src="script.js"></script>
+  <script src="script1.js"></script>
+</body>
+
+</html>

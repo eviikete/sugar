@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ 
+  <header>
+    <nav>
+      <div class="logo"><img src="img/logo.svg" alt=""></div>
+      <menu>
+        <a href="convector2.html">Конвектор</a>
+        <a href="time.html">Графік</a>
+       </menu>
+      <a href="convector.html" class="link1"><img src="img/back.svg" alt="back"></a>
+      
+    </nav>
+
+  <div class="container2">
+    <h2>База даних глюкози</h2>
+
+  <label>Ім’я:</label><br>
+  <input type="text" id="username" placeholder="Введіть ім’я"><br>
+
+  <label>Рівень глюкози (ммоль/л):</label><br>
+  <input type="number" id="glucose" step="0.1" placeholder="Наприклад: 5.6"><br>
+
+  <button onclick="addEntry()">Додати запис</button>
+  <button onclick="clearDatabase()">Очистити базу</button>
+
+  <h3>Історія вимірів</h3>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>Ім’я</th>
+        <th>Дата</th>
+        <th>Час</th>
+        <th>Глюкоза (ммоль/л)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function loadDatabase() {
+      return JSON.parse(localStorage.getItem('glucoseDB')) || [];
+    }
+
+    function saveDatabase(data) {
+      localStorage.setItem('glucoseDB', JSON.stringify(data));
+    }
+
+    function addEntry() {
+      const name = document.getElementById('username').value.trim();
+      const glucose = parseFloat(document.getElementById('glucose').value);
+      const now = new Date();
+
+      if (!name || isNaN(glucose)) {
+        alert('Введіть ім’я і рівень глюкози!');
+        return;
+      }
+
+      const newEntry = {
+        name: name,
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString(),
+        glucose: glucose
+      };
+
+      const db = loadDatabase();
+      db.push(newEntry);
+      saveDatabase(db);
+
+      document.getElementById('glucose').value = '';
+      renderTable();
+    }
+
+    function clearDatabase() {
+      if (confirm("Ви впевнені, що хочете очистити базу?")) {
+        localStorage.removeItem('glucoseDB');
+        renderTable();
+      }
+    }
+
+    function renderTable() {
+      const db = loadDatabase();
+      const tbody = document.querySelector('#data-table tbody');
+      tbody.innerHTML = '';
+
+      db.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.name}</td>
+          <td>${entry.date}</td>
+          <td>${entry.time}</td>
+          <td>${entry.glucose}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Показуємо таблицю при завантаженні
+    window.onload = renderTable;
+  </script>
+
+
+   
+  </div>
+
+    </div>
+ </header>
+  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script2.js"></script>
+  <script src="script.js"></script>
+  <script src="script1.js"></script>
+</body>
+
+</html>
